@@ -1,0 +1,7 @@
+{
+  "name": "ionicLinkedRh",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
