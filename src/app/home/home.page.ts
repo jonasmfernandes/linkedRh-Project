@@ -9,4 +9,7 @@ export class HomePage {
 
   constructor() {}
 
+  myFunction(){
+    console.log("butão clicado")
+  }
 }
