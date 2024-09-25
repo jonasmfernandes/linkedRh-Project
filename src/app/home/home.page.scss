@@ -5,9 +5,23 @@ ion-content {
   box-sizing: border-box;
 }
 
-ion-header, ion-toolbar, ion-content {
+ion-header,
+ion-toolbar,
+ion-content,
+h3 {
   margin: 0; /* Remove margens padrão */
   padding: 0; /* Remove preenchimento padrão */
+}
+
+.toolbarHeader {
+  --background: rgb(13, 10, 58);
+  ion-title {
+    font-weight: 400;
+  }
+
+  .headerMenuBtn {
+    color: white;
+  }
 }
 .ion-page {
   margin: 0;
@@ -35,6 +49,7 @@ ion-header, ion-toolbar, ion-content {
   position: relative;
   margin: -5em 13px 0px 10px;
   border-radius: 5px;
+  box-shadow: 0px 10px 21px -15px rgba(0, 0, 0, 0.75);
   .card-container {
     display: flex;
     justify-content: center;
@@ -42,13 +57,13 @@ ion-header, ion-toolbar, ion-content {
     align-items: center;
     h1 {
       padding-top: 30px;
-      color: black;
+      color: #1b1b1b;
       font-size: 1.2em;
       font-weight: bold;
       margin-bottom: 0px;
     }
     h2 {
-      color: black;
+      color: #1b1b1b;
       font-size: 1.2em;
       margin-bottom: 0px;
       margin-top: 5px;
@@ -62,4 +77,36 @@ ion-header, ion-toolbar, ion-content {
   height: 80px;
   position: absolute;
   top: -40px;
+  border: 1px solid #ffffff;
+}
+
+.accordionContainer {
+  margin: 10px;
+  .accordionItem {
+    margin-bottom: 10px;
+    box-shadow: 0px 10px 21px -15px rgba(0, 0, 0, 0.75);
+    border-radius: 3px;
+
+    .accordionContent {
+      --background: rgb(240, 240, 240);
+      ion-label {
+        color: rgb(13, 10, 58);
+        padding-left: 10px;
+      }
+    }
+  }
+
+  ion-accordion::part(content) {
+    background-color: rgb(240, 240, 240);
+    color: #1b1b1b;
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: 200;
+    color: #6e6e6e;
+  }
+  p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
 }
