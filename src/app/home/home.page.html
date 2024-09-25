@@ -1,145 +1,176 @@
 <ion-content>
-  <ion-menu contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu Content</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">This is the menu content.</ion-content>
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar class="toolbarHeader">
-        <ion-buttons slot="start">
-          <ion-menu-button class="headerMenuBtn"></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Perfil do Colaborador</ion-title>
-      </ion-toolbar>
-    </ion-header>
-  </div>
+  <!-- Exibe o loading spinner -->
+  <!-- <ion-spinner *ngIf="loading"></ion-spinner> -->
 
-  <div class="mainContainer">
-    <img class="bgImg" src="../../assets/bgImg.jpeg" alt="" />
-  </div>
-  <div class="card">
-    <div class="card-container">
-      <img
-        class="profilePictureImg"
-        src="../../assets/marizaPicture.jpg"
-        alt=""
-      />
-      <h1>{{employeeName}}</h1>
-      <h2>{{jobName}}</h2>
+  <!-- Esconde o conteúdo enquanto o loading estiver ativo -->
+  <ng-container *ngIf="!loading">
+    <ion-menu contentId="main-content">
+      <ion-header>
+        <ion-toolbar class="toolbarMenu">
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding" id="menuContent">Home</ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar class="toolbarHeader">
+          <ion-buttons slot="start">
+            <ion-menu-button class="headerMenuBtn"></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Perfil do Colaborador</ion-title>
+        </ion-toolbar>
+      </ion-header>
     </div>
-  </div>
 
-  <div class="accordionContainer">
-    <ion-accordion-group multiple="=" true>
-      <ion-accordion class="accordionItem" value="first" toggleIconSlot="start">
-        <ion-item slot="header" class="accordionContent">
-          <ion-label>Dados de Identificação</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">
-          <h3>Admissão na empresa</h3>
-          <p>{{companyAdmissionDate}}</p>
+    <div class="mainContainer">
+      <img class="bgImg" src="../../assets/bgImg.jpeg" alt="" />
+    </div>
+    <div class="card">
+      <div class="card-container">
+        <img
+          class="profilePictureImg"
+          src="../../assets/marizaPicture.jpg"
+          alt=""
+        />
+        <h1>{{employeeName}}</h1>
+        <h2>{{jobName}}</h2>
+      </div>
+    </div>
 
-          <h3>Data de Nascimento</h3>
-          <p>{{birthDate}}</p>
-
-          <h3>Celular</h3>
-          <p>{{cellphoneNumber}}</p>
-
-          <h3>E-mail</h3>
-          <p>{{email}}</p>
-        </div>
-      </ion-accordion>
-
-      <ion-accordion
-        class="accordionItem"
-        value="second"
-        toggleIconSlot="start"
-      >
-        <ion-item slot="header" class="accordionContent">
-          <ion-label>Cursos</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content" *ngFor="let course of courses">
-          <h3>Nome do Curso</h3>
-          <p>{{course.courseName}}</p>
-
-          <h3>Local</h3>
-          <p>{{course.entity}}</p>
-
-          <h3>Período</h3>
-          <p>{{course.period}}</p>
-        </div>
-      </ion-accordion>
-
-      <ion-accordion class="accordionItem" value="third" toggleIconSlot="start">
-        <ion-item slot="header" class="accordionContent">
-          <ion-label>Formação acadêmica</ion-label>
-        </ion-item>
-        <div
-          class="ion-padding"
-          slot="content"
-          *ngFor="let AcademicBackground of academicItems"
+    <div class="accordionContainer">
+      <ion-accordion-group multiple="=" true>
+        <ion-accordion
+          class="accordionItem"
+          value="first"
+          toggleIconSlot="start"
         >
-          <h3>Período</h3>
-          <p>{{AcademicBackground.period}}</p>
+          <ion-item slot="header" class="accordionContent">
+            <ion-label>Dados de Identificação</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <h3>Admissão na empresa</h3>
+            <p>{{companyAdmissionDate}}</p>
 
-          <h3>Curso</h3>
-          <p>{{AcademicBackground.course}}</p>
+            <h3>Data de Nascimento</h3>
+            <p>{{birthDate}}</p>
 
-          <h3>Local</h3>
-          <p>{{AcademicBackground.local}}</p>
+            <h3>Celular</h3>
+            <p>{{cellphoneNumber}}</p>
 
-          <h3>Nível</h3>
-          <p>{{AcademicBackground.educationLevel}}</p>
-        </div>
-      </ion-accordion>
+            <h3>E-mail</h3>
+            <p>{{email}}</p>
+          </div>
+        </ion-accordion>
 
-      <ion-accordion
-        class="accordionItem"
-        value="fourth"
-        toggleIconSlot="start"
-      >
-        <ion-item slot="header" class="accordionContent">
-          <ion-label>Idiomas</ion-label>
-        </ion-item>
-        <div
-          class="ion-padding"
-          slot="content"
-          *ngFor="let Language of languageItems"
+        <ion-accordion
+          class="accordionItem"
+          value="second"
+          toggleIconSlot="start"
         >
-          <h3>Linguagem</h3>
-          <p>{{Language.language}}</p>
+          <ion-item slot="header" class="accordionContent">
+            <ion-label>Cursos</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content" *ngFor="let course of courses">
+            <h3>Nome do Curso</h3>
+            <p>{{course.courseName}}</p>
 
-          <h3>Status</h3>
-          <p>{{Language.status}}</p>
+            <h3>Local</h3>
+            <p>{{course.entity}}</p>
 
-          <h3>Período</h3>
-          <p>{{Language.period}}</p>
-        </div>
-      </ion-accordion>
+            <h3>Período</h3>
+            <p>{{course.period}}</p>
+          </div>
+        </ion-accordion>
 
-      <ion-accordion class="accordionItem" value="fifth" toggleIconSlot="start">
-        <ion-item slot="header" class="accordionContent">
-          <ion-label>Histórico Profissional</ion-label>
-        </ion-item>
-        <div
-          class="ion-padding"
-          slot="content"
-          *ngFor="let JobBackground of jobItems"
+        <ion-accordion
+          class="accordionItem"
+          value="third"
+          toggleIconSlot="start"
         >
-          <h3>Cargo</h3>
-          <p>{{JobBackground.job}}</p>
+          <ion-item slot="header" class="accordionContent">
+            <ion-label>Formação acadêmica</ion-label>
+          </ion-item>
+          <div
+            class="ion-padding"
+            slot="content"
+            *ngFor="let AcademicBackground of academicItems"
+          >
+            <h3>Período</h3>
+            <p>{{AcademicBackground.period}}</p>
 
-          <h3>Período</h3>
-          <p>{{JobBackground.period}}</p>
+            <h3>Curso</h3>
+            <p>
+              {{AcademicBackground.course
+                ? AcademicBackground.course
+                : 'Não mencionado'}}
+            </p>
 
-          <h3>Empresa</h3>
-          <p>{{JobBackground.company}}</p>
-        </div>
-      </ion-accordion>
-    </ion-accordion-group>
-  </div>
+            <h3>Local</h3>
+            <p>{{AcademicBackground.local}}</p>
+
+            <h3>Nível</h3>
+            <p>
+              {{AcademicBackground.educationLevel
+                ? AcademicBackground.educationLevel
+                : 'Não mencionado'}}
+            </p>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion
+          class="accordionItem"
+          value="fourth"
+          toggleIconSlot="start"
+        >
+          <ion-item slot="header" class="accordionContent">
+            <ion-label>Idiomas</ion-label>
+          </ion-item>
+          <div
+            class="ion-padding"
+            slot="content"
+            *ngFor="let Language of languageItems"
+          >
+            <h3>Linguagem</h3>
+            <p>{{Language.language}}</p>
+
+            <h3>Status</h3>
+            <p>{{Language.status}}</p>
+
+            <h3>Período</h3>
+            <p>{{Language.period}}</p>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion
+          class="accordionItem"
+          value="fifth"
+          toggleIconSlot="start"
+        >
+          <ion-item slot="header" class="accordionContent">
+            <ion-label>Histórico Profissional</ion-label>
+          </ion-item>
+          <div
+            class="ion-padding"
+            slot="content"
+            *ngFor="let JobBackground of jobItems"
+          >
+            <h3>Cargo</h3>
+            <p>{{JobBackground.job}}</p>
+
+            <h3>Período</h3>
+            <p>{{JobBackground.period}}</p>
+
+            <h3>Empresa</h3>
+            <p>
+              {{JobBackground.company
+                ? JobBackground.company
+                : 'Não mencionado'}}
+            </p>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+  </ng-container>
 </ion-content>

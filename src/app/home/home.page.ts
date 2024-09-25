@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import jsonData from '../home/call.json';
 import { core } from '@angular/compiler';
+import { LoadingController } from '@ionic/angular';
 
 interface Course {
   courseName: string;
@@ -44,7 +45,27 @@ export class HomePage {
   public languageItems: Language[] = [];
   public jobItems: JobBackground[] = [];
 
-  constructor() {
+  public loading: boolean = true;
+
+  constructor(private loadingController: LoadingController) {
+    this.presentLoading();
+  } 
+  async presentLoading() {
+    const loadingElement = await this.loadingController.create({
+      message: "Carregando os dados...",
+      duration: 1000,
+    })
+
+    await loadingElement.present();
+
+    setTimeout(() => {
+      this.loadData();
+      this.loading = false;
+      loadingElement.dismiss();
+    }, 1000)
+  }
+
+  loadData(){
     const sections = jsonData.payload[0].sections;
     const identificationSection = sections.find(
       (section) => section.name === 'Dados de identificação'
@@ -77,9 +98,7 @@ export class HomePage {
       }
     }
 
-    const academicSection = sections.find(
-      (section) => section.name === 'Formação acadêmica'
-    );
+    const academicSection = sections.find((section) => section.name === 'Formação acadêmica');
 
     if (academicSection && academicSection.cardItems.length > 0) {
       const academic = academicSection.cardItems[0].data;
@@ -88,9 +107,7 @@ export class HomePage {
       }
     }
 
-    const languageSection = sections.find(
-      (section) => section.name === 'Idiomas'
-    );
+    const languageSection = sections.find((section) => section.name === 'Idiomas');
 
     if (languageSection && languageSection.cardItems.length > 0) {
       const language = languageSection.cardItems[0].data;
@@ -99,9 +116,7 @@ export class HomePage {
       }
     }
 
-    const jobSection = sections.find(
-      (section) => section.name === 'Histórico Profissional'
-    );
+    const jobSection = sections.find((section) => section.name === 'Histórico profissional');
 
     if (jobSection && jobSection.cardItems.length > 0) {
       const job = jobSection.cardItems[0].data;
