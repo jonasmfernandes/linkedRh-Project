@@ -1,0 +1,143 @@
+ion-content {
+    // --background: rgb(227, 227, 227);
+    --background: rgb(179, 179, 179);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  ion-header,
+  ion-toolbar,
+  ion-content,
+  h3 {
+    margin: 0;
+    padding: 0; 
+  }
+  
+  .toolbarHeader {
+    --background: rgb(13, 10, 58);
+    ion-title {
+      font-weight: 400;
+    }
+  
+    .headerMenuBtn {
+      color: white;
+    }
+  }
+  .ion-page {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Garante que ocupe toda a altura disponível */
+  }
+  .mainContainer {
+    background-color: rgb(227, 227, 227);
+    padding-top: 45px;
+  }
+  
+  .bgImg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 30vh;
+  }
+  
+  .card {
+    background-color: rgb(240, 240, 240);
+    // width: 100%;
+    height: 17%;
+    // border-radius: 10px;
+    position: relative;
+    margin: -5em 13px 0px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 21px -15px rgba(0, 0, 0, 0.75);
+    .card-container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      h1 {
+        padding-top: 30px;
+        color: #1b1b1b;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 0px;
+      }
+      h2 {
+        color: #1b1b1b;
+        font-size: 1.2em;
+        margin-bottom: 0px;
+        margin-top: 5px;
+      }
+    }
+  }
+  
+  .profilePictureImg {
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -40px;
+    border: 1px solid #ffffff;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    padding: 0px 13px 0px 10px;
+    width: 100%;
+    ion-button {
+      --border-radius: 5px;
+      --background: rgb(13, 10, 58);
+      --color: white;
+    }
+  }
+  
+  
+  .buttonContainer ion-button {
+    width: 100%; /* Garantindo que os botões ocupem 100% da largura */
+    border-radius: 5px;
+  }
+  
+  .accordionContainer {
+  
+    ::ng-deep .ion-accordion-toggle-icon {
+      // font-size: 25px; // Tamanho do ícone
+      color: rgb(13, 10, 58); // Cor do ícone
+    }
+    margin: 10px;
+    .accordionItem {
+      margin-bottom: 10px;
+      box-shadow: 0px 10px 21px -15px rgba(0, 0, 0, 0.75);
+      border-radius: 3px;
+  
+      
+      
+      .accordionContent {
+        --background: rgb(240, 240, 240);
+        ion-label {
+          color: rgb(13, 10, 58);
+          padding-left: 10px;
+        }
+  
+      }
+    }
+  
+    ion-accordion::part(content) {
+      background-color: rgb(240, 240, 240);
+      color: #1b1b1b;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 200;
+      color: #6e6e6e;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+  }
+  

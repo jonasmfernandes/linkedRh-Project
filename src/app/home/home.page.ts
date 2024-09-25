@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import jsonData from '../home/call.json';
 import { core } from '@angular/compiler';
 import { LoadingController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
-interface Course {
+export interface Course {
   courseName: string;
   entity: string;
   period: string;
@@ -34,7 +36,8 @@ interface JobBackground {
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public employeeName: string = ''; // Inicialização com um valor padrão
+  public employeeName: string = ''; 
+  public employeeData: any = {};
   public jobName: string = '';
   public birthDate: string = '';
   public companyAdmissionDate: string = '';
@@ -47,13 +50,23 @@ export class HomePage {
 
   public loading: boolean = true;
 
-  constructor(private loadingController: LoadingController) {
+  constructor(private loadingController: LoadingController, private navCtrl: NavController, private router: Router) {
     this.presentLoading();
   } 
+
+  goToProfile() {
+    const employeeDataString = JSON.stringify(this.employeeData);
+  this.router.navigate(['/profile'], { queryParams: { employeeData: employeeDataString } });
+  this.navCtrl.navigateForward(['/profile'], {
+    queryParams: { employeeData: JSON.stringify(this.employeeData) }
+  });
+  
+  }
+
   async presentLoading() {
     const loadingElement = await this.loadingController.create({
       message: "Carregando os dados...",
-      duration: 1000,
+      duration: 2000,
     })
 
     await loadingElement.present();
@@ -62,7 +75,7 @@ export class HomePage {
       this.loadData();
       this.loading = false;
       loadingElement.dismiss();
-    }, 1000)
+    }, 2000)
   }
 
   loadData(){
@@ -70,59 +83,42 @@ export class HomePage {
     const identificationSection = sections.find(
       (section) => section.name === 'Dados de identificação'
     );
-
+  
     if (identificationSection && identificationSection.cardItems.length > 0) {
       const employeeData = identificationSection.cardItems[0].data;
-
-      // Verifique se employeeData é um objeto e tem a propriedade employeeName
+  
       if (
         typeof employeeData === 'object' &&
         employeeData !== null &&
         'employeeName' in employeeData
       ) {
+      
+        this.employeeData = employeeData; 
         this.employeeName = employeeData.employeeName;
-        this.jobName = employeeData.jobName; // Acessando o employeeName
-        this.birthDate = employeeData.birthDate; // Acessando o employeeName
-        this.companyAdmissionDate = employeeData.companyAdmissionDate; // Acessando o employeeName
-        this.cellphoneNumber = employeeData.cellphoneNumber; // Acessando o employeeName
-        this.email = employeeData.email; // Acessando o employeeName
-      }
-    }
+        this.jobName = employeeData.jobName;
+        this.birthDate = employeeData.birthDate;
+        this.companyAdmissionDate = employeeData.companyAdmissionDate;
+        this.cellphoneNumber = employeeData.cellphoneNumber;
+        this.email = employeeData.email;
 
+        
+    }
     const courseSection = sections.find((section) => section.name === 'Cursos');
 
-    if (courseSection && courseSection.cardItems.length > 0) {
-      const courseData = courseSection.cardItems[0].data;
-      if (Array.isArray(courseData)) {
+      if (courseSection && courseSection.cardItems.length > 0) {
+        const courseData = courseSection.cardItems[0].data;
+        if (Array.isArray(courseData)) {
         this.courses = courseData as Course[];
-      }
-    }
-
-    const academicSection = sections.find((section) => section.name === 'Formação acadêmica');
-
-    if (academicSection && academicSection.cardItems.length > 0) {
-      const academic = academicSection.cardItems[0].data;
-      if (Array.isArray(academic)) {
-        this.academicItems = academic as AcademicBackground[];
-      }
-    }
-
-    const languageSection = sections.find((section) => section.name === 'Idiomas');
-
-    if (languageSection && languageSection.cardItems.length > 0) {
-      const language = languageSection.cardItems[0].data;
-      if (Array.isArray(language)) {
-        this.languageItems = language as Language[];
-      }
-    }
-
-    const jobSection = sections.find((section) => section.name === 'Histórico profissional');
-
-    if (jobSection && jobSection.cardItems.length > 0) {
-      const job = jobSection.cardItems[0].data;
-      if (Array.isArray(job)) {
-        this.jobItems = job as JobBackground[];
-      }
-    }
+        console.log('Cursos encontrados:', this.courses); 
+        
+  }else {
+    console.log('Nenhum curso encontrado vei'); 
   }
+      }
+    }
+    
+  }
+  
+  
 }
+

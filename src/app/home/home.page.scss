@@ -1,5 +1,6 @@
 ion-content {
-  --background: rgb(227, 227, 227);
+  // --background: rgb(227, 227, 227);
+  --background: rgb(179, 179, 179);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,8 +10,8 @@ ion-header,
 ion-toolbar,
 ion-content,
 h3 {
-  margin: 0; /* Remove margens padrão */
-  padding: 0; /* Remove preenchimento padrão */
+  margin: 0;
+  padding: 0; 
 }
 
 .toolbarHeader {
@@ -80,23 +81,48 @@ h3 {
   border: 1px solid #ffffff;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+  padding: 0px 13px 0px 10px;
+  width: 100%;
+  ion-button {
+    --border-radius: 5px;
+    --background: rgb(13, 10, 58);
+    --color: white;
+  }
+}
+
+
+.buttonContainer ion-button {
+  width: 100%; /* Garantindo que os botões ocupem 100% da largura */
+  border-radius: 5px;
+}
+
 .accordionContainer {
+
+  ::ng-deep .ion-accordion-toggle-icon {
+    // font-size: 25px; // Tamanho do ícone
+    color: rgb(13, 10, 58); // Cor do ícone
+  }
   margin: 10px;
   .accordionItem {
     margin-bottom: 10px;
     box-shadow: 0px 10px 21px -15px rgba(0, 0, 0, 0.75);
     border-radius: 3px;
-    .icon-inner {
-      .ionicon {
-        color: #1b1b1b;
-      }
-    }
+
+    
+    
     .accordionContent {
       --background: rgb(240, 240, 240);
       ion-label {
         color: rgb(13, 10, 58);
         padding-left: 10px;
       }
+
     }
   }
 
