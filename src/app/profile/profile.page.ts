@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Course } from '../home/home.page';
 
 interface CardItem {
-  data: Course[];
+  // data: Course[];
 }
 
 interface Section {
@@ -24,6 +23,30 @@ interface EmployeeData {
   cellphoneNumber: string;
   email: string;
   birthDate: string;
+}
+export interface Course {
+  courseName: string;
+  entity: string;
+  period: string;
+}
+
+interface AcademicBackground {
+  period: string;
+  course: string;
+  local: string;
+  educationLevel: string;
+}
+
+interface Language {
+  language: string;
+  status: string;
+  period: string;
+}
+
+interface JobBackground {
+  job: string;
+  period: string;
+  company: string;
 }
 
 @Component({
