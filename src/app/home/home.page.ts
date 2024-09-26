@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import jsonData from './call.json';
+import { Component, ComponentFactoryResolver } from '@angular/core';
+import jsonData from 'src/assets/call.json';
 import { LoadingController } from '@ionic/angular';
-import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +17,6 @@ export class HomePage {
 
   constructor(
     private loadingController: LoadingController,
-    private navCtrl: NavController,
     private router: Router
   ) {
     this.presentLoading();
@@ -28,9 +26,6 @@ export class HomePage {
     const employeeDataString = JSON.stringify(this.employeeData);
     this.router.navigate(['/profile'], {
       queryParams: { employeeData: employeeDataString },
-    });
-    this.navCtrl.navigateForward(['/profile'], {
-      queryParams: { employeeData: JSON.stringify(this.employeeData) },
     });
   }
 
