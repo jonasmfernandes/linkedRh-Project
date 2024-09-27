@@ -1,5 +1,5 @@
 <ion-content>
-  <ng-container *ngIf="!loading">
+  <ng-container *ngIf="!loadingUserData">
     <ion-menu contentId="main-content">
       <ion-header>
         <ion-toolbar class="toolbarMenu">
@@ -39,7 +39,13 @@
     </div>
     <div class="buttonContainer">
       <ion-button (click)="goToProfile()">Perfil do Colaborador</ion-button>
-      <ion-button>Atualizar App</ion-button>
+      <ion-button (click)="loadApp()">Atualizar App</ion-button>
+
+      <ion-loading
+        [isOpen]="loadingApp"
+        message="Carregando..."
+        spinner="crescent"
+  ></ion-loading>
     </div>
   </ng-container>
 </ion-content>
