@@ -46,18 +46,28 @@ Este projeto é um aplicativo desenvolvido em **Ionic** e **TypeScript** que sim
 ### Pré-requisitos
 - **Node.js** instalado.
 - **Ionic CLI** instalado globalmente:  
-  ```bash
+```bash
   npm install -g @ionic/cli
-
+```
 1. Clone este repositório.
-   ```bash
+  ```bash
    git clone https://github.com/jonasmfernandes/linkedRh-Project.git
-
+  ```
 2. Acesse a pasta do projeto. 
   ```bash
    cd linkedRh-Project
+  ```
+3. Instale as dependências:
+  ```bash
+   npm install
+  ```
+4. Execute o aplicativo em um servidor local:
+  ```bash
+   ionic serve
+  ``` 
+5. Acesse o aplicativo em:
+- http://localhost:8100
 
-
-## Autor 
+### Autor 
 
 Desenvolvido por: Jonas Monteiro Fernandes
