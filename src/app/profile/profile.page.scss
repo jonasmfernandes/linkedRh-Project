@@ -139,3 +139,20 @@ ion-content {
     }
   }
   
+  ion-content {
+    --height: 100%;
+  }
+  
+  .accordionContainer {
+    max-height: 100%;
+    overflow-y: auto;
+  }
+  
+  .mainContainer {
+    height: auto;
+  }
+
+  .buttonContainer {
+    height: auto;
+    margin-bottom: 16px;
+  }

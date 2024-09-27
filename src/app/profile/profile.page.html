@@ -33,73 +33,90 @@
           src="../../assets/marizaPicture.jpg"
           alt=""
         />
-        <!-- <h1>{{employeeName}}</h1>
-        <h2>{{jobName}}</h2> -->
+        <h1>{{employeeName}}</h1>
+        <h2>{{jobName}}</h2> 
       </div>
     </div>
 
-    <ion-accordion-group class="accordionContainer">
-      <ion-accordion *ngFor="let accordion of accordions" class="accordionItem">
+    <ion-accordion-group class="accordionContainer" multiple="true">
+      <ion-accordion
+        value="{{i}}"
+        class="accordionItem"
+        *ngFor="let section of sections; let i = index;"
+      >
         <ion-item slot="header" color="light" class="accordionContent">
-          <!-- Exibindo o título da seção (name) -->
-          <ion-label>{{ accordion.name || 'Sem título' }}</ion-label>
+          <ion-label>{{ section.name }}</ion-label>
         </ion-item>
-        <div class="ion-padding" slot="content">
-          <!-- Seção "Dados de identificação" -->
-          <div *ngIf="accordion.name === 'Dados de identificação'" class="accordionContent">
-            <p>Nome: {{ employeeData?.employeeName || 'Sem informação' }}</p>
-            <p>Cargo: {{ employeeData?.jobName || 'Sem informação' }}</p>
-            <p>Data de Nascimento: {{ employeeData?.birthDate || 'Sem informação' }}</p>
-            <p>Data de Admissão: {{ employeeData?.companyAdmissionDate || 'Sem informação' }}</p>
-            <p>Celular: {{ employeeData?.cellphoneNumber || 'Sem informação' }}</p>
-            <p>Email: {{ employeeData?.email || 'Sem informação' }}</p>
+        <ng-container *ngIf="section.name == 'Dados de identificação'">
+          <div class="ion-padding" slot="content">
+            <p>
+              Nome: {{ section.cardItems[0].data?.employeeName || 'Sem
+              informação' }}
+            </p>
+            <p>
+              Cargo: {{ section.cardItems[0].data?.jobName || 'Sem informação'
+              }}
+            </p>
+            <p>
+              Data de Nascimento: {{ section.cardItems[0].data?.birthDate ||
+              'Sem informação' }}
+            </p>
+            <p>
+              Data de Admissão: {{
+              section.cardItems[0].data?.companyAdmissionDate || 'Sem
+              informação' }}
+            </p>
+            <p>
+              Celular: {{ section.cardItems[0].data?.cellphoneNumber || 'Sem
+              informação' }}
+            </p>
+            <p>
+              Email: {{ section.cardItems[0].data?.email || 'Sem informação' }}
+            </p>
           </div>
-    
-          <!-- Seção "Cursos" -->
-          <div *ngIf="accordion.name === 'Cursos' && accordion.cardItems.length > 0">
-            <div *ngFor="let courseItem of accordion.cardItems">
-              <div *ngFor="let course of courseItem.data">
-                <p>Curso: {{ course.courseName || 'N/A' }}</p>
-                <p>Entidade: {{ course.entity || 'N/A' }}</p>
-                <p>Período: {{ course.period || 'N/A' }}</p>
-              </div>
-            </div>
+        </ng-container>
+
+        <ng-container *ngIf="section.name == 'Cursos'">
+          <div class="ion-padding" slot="content" *ngFor="let course of section.cardItems[0].data">
+            <p>Curso: {{ course.courseName || 'N/A' }}</p>
+            <p>Entidade: {{ course.entity || 'N/A' }}</p>
+            <p>Período: {{ course.period || 'N/A' }}</p>
           </div>
-    
-          <!-- Seção "Formação Acadêmica" -->
-          <div *ngIf="accordion.name === 'Formação acadêmica' && accordion.cardItems.length > 0">
-            <div *ngFor="let education of accordion.cardItems">
-              <p>Curso: {{ education.data.course || 'N/A' }}</p>
-              <p>Nível de Educação: {{ education.data.educationLevel || 'N/A' }}</p>
-              <p>Local: {{ education.data.local || 'N/A' }}</p>
-              <p>Período: {{ education.data.period || 'N/A' }}</p>
-            </div>
+        </ng-container>
+
+        <ng-container *ngIf="section.name == 'Formação acadêmica'">
+          <div class="ion-padding" slot="content" *ngFor="let education of section.cardItems[0].data">
+            <p>Curso: {{ education.course || 'N/A' }}</p>
+            <p>Nível de Educação: {{ education.educationLevel || 'N/A' }}</p>
+            <p>Local: {{ education.local || 'N/A' }}</p>
+            <p>Período: {{ education.period || 'N/A' }}</p>
           </div>
-    
-          <!-- Seção "Idiomas" -->
-          <div *ngIf="accordion.name === 'Idiomas' && accordion.cardItems.length > 0">
-            <div *ngFor="let language of accordion.cardItems">
-              <p>Idioma: {{ language.data.language || 'N/A' }}</p>
-              <p>Status: {{ language.data.status || 'N/A' }}</p>
-              <p>Período: {{ language.data.period || 'N/A' }}</p>
-            </div>
+        </ng-container>
+
+        <ng-container *ngIf="section.name == 'Idiomas'">
+          <div class="ion-padding" slot="content" *ngFor="let language of section.cardItems[0].data">
+            <p>Idioma: {{ language.language || 'N/A' }}</p>
+              <p>Status: {{ language.status || 'N/A' }}</p>
+              <p>Período: {{ language.period || 'N/A' }}</p>
           </div>
-    
-          <!-- Seção "Histórico Profissional" -->
-          <div *ngIf="accordion.name === 'Histórico profissional' && accordion.cardItems.length > 0">
-            <div *ngFor="let job of accordion.cardItems">
-              <p>Cargo: {{ job.data.job || 'N/A' }}</p>
-              <p>Empresa: {{ job.data.company || 'N/A' }}</p>
-              <p>Período: {{ job.data.period || 'N/A' }}</p>
-            </div>
+        </ng-container>
+
+        <ng-container *ngIf="section.name == 'Histórico profissional'">
+          <div class="ion-padding" slot="content" *ngFor="let jobContent of section.cardItems[0].data">
+            <h3>Cargo</h3>
+            <p>{{ jobContent.job || 'N/A' }}</p>
+              <h3>Empresa</h3>
+              <p>{{ jobContent.company || 'N/A' }}</p>
+              <h3>Período</h3>
+              <h3>{{ jobContent.period || 'N/A' }}</h3>
           </div>
-        </div>
+        </ng-container>
+
       </ion-accordion>
     </ion-accordion-group>
-    
-    
+
     <div class="buttonContainer">
-      <ion-button expand="full">Ver mais</ion-button>
+      <ion-button expand="full" (click)="seeMore()" >Ver mais</ion-button>
     </div>
   </ng-container>
 </ion-content>

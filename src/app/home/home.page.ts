@@ -54,9 +54,9 @@ export class HomePage {
   }
 
   goToProfile() {
-    const employeeDataString = JSON.stringify(this.employeeData);
+    const jsonDataString = JSON.stringify(jsonData);
     this.router.navigate(['/profile'], {
-      queryParams: { employeeData: employeeDataString },
+      queryParams: { jsonData: jsonDataString },
     });
   }
 

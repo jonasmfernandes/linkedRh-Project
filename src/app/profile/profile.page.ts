@@ -6,8 +6,8 @@ import { NavController } from '@ionic/angular';
 interface AccordionSection {
   title: string;
   name: string;
-  expanded?: boolean;  
-  cardItems: Array<{ data: any }>; 
+  expanded?: boolean;
+  cardItems: Array<{ data: any }>;
 }
 
 @Component({
@@ -16,20 +16,32 @@ interface AccordionSection {
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage {
-  public employeeData: any | null = null;
+  public jsonData: any | null = null;
   public accordions: AccordionSection[] = [];
+  public sections: any = [];
+  public originalSections: any = [];
+  public employeeName: string = '';
+  public jobName: string = '';
 
   constructor(
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private http: HttpClient
   ) {
-    this.loadJsonData();
+    // this.loadJsonData();
 
     this.route.queryParams.subscribe((params) => {
-      if (params['employeeData']) {
+      if (params['jsonData']) {
         try {
-          this.employeeData = JSON.parse(params['employeeData']);
+          this.jsonData = JSON.parse(params['jsonData']);
+          this.sections = this.sections.concat(
+            this.jsonData.payload[0].sections
+          );
+          this.originalSections = this.jsonData.payload[0].sections;
+          const identification = this.jsonData.payload[0].sections[0];
+          
+          this.employeeName = identification.cardItems[0].data.employeeName;
+          this.jobName = identification.cardItems[0].data.jobName;
         } catch (error) {
           console.error('Erro ao fazer parse do JSON:', error);
         }
@@ -39,103 +51,120 @@ export class ProfilePage {
 
   loadJsonData() {
     this.http.get<any>('assets/call.json').subscribe(
-      response => {
+      (response) => {
         if (response.payload && response.payload.length > 0) {
           // Log para verificar se os dados estão corretos
           console.log('JSON completo:', response.payload[0].sections);
-  
-          this.accordions = response.payload[0].sections.map((section: any) => ({
-            name: section.name,
-            expanded: section.expanded || false,
-            cardItems: section.cardItems.map((card: any) => ({
-              data: card.data // Mapeando o array de "data"
-            }))
-          }));
-  
+
+          this.accordions = response.payload[0].sections.map(
+            (section: any) => ({
+              name: section.name,
+              expanded: section.expanded || false,
+              cardItems: section.cardItems.map((card: any) => ({
+                data: card.data, // Mapeando o array de "data"
+              })),
+            })
+          );
+
           // Verificando o conteúdo dos cardItems na seção Cursos
-          const cursosSection = this.accordions.find(accordion => accordion.name === 'Cursos');
-          const educationSection = this.accordions.find(accordion => accordion.name === "Formação acadêmica");
-          const languageSection = this.accordions.find(accordion => accordion.name === "Idiomas");
-          const jobSection = this.accordions.find(accordion => accordion.name === "Histórico Profissional");
+          const cursosSection = this.accordions.find(
+            (accordion) => accordion.name === 'Cursos'
+          );
+          const educationSection = this.accordions.find(
+            (accordion) => accordion.name === 'Formação acadêmica'
+          );
+          const languageSection = this.accordions.find(
+            (accordion) => accordion.name === 'Idiomas'
+          );
+          const jobSection = this.accordions.find(
+            (accordion) => accordion.name === 'Histórico Profissional'
+          );
           if (cursosSection) {
             console.log('Cursos Section:', cursosSection);
             console.log('Cursos Section:', educationSection);
             console.log('Cursos Section:', languageSection);
             console.log('Cursos Section:', jobSection);
           }
-  
         } else {
           console.error('Payload vazio');
         }
       },
-      error => {
+      (error) => {
         console.error('Erro ao carregar o JSON:', error);
       }
     );
   }
-  
+
   populateAccordionItems(data: any) {
     // Inicializando os grupos de acordeão
     if (data.Cursos && data.Cursos.length > 0) {
       this.accordions.push({
         title: 'Cursos', // Título da seção
-        name: 'Cursos',  // Nome da seção para uso no acordeão
+        name: 'Cursos', // Nome da seção para uso no acordeão
         expanded: false, // Inicializa como não expandida
         cardItems: data.Cursos.map((curso: any) => ({
-          data: {  // Mantenha os dados que você precisa
+          data: {
+            // Mantenha os dados que você precisa
             courseName: curso.courseName,
             entity: curso.entity,
-            period: curso.period
-          }
-        }))
+            period: curso.period,
+          },
+        })),
       });
     }
-  
+
     if (data.FormacaoAcademica && data.FormacaoAcademica.length > 0) {
       this.accordions.push({
         title: 'Formação acadêmica', // Título da seção
-        name: 'Formação acadêmica',   // Nome da seção para uso no acordeão
+        name: 'Formação acadêmica', // Nome da seção para uso no acordeão
         expanded: false, // Inicializa como não expandida
         cardItems: data.FormacaoAcademica.map((formacao: any) => ({
-          data: {  // Mantenha os dados que você precisa
+          data: {
+            // Mantenha os dados que você precisa
             courseName: formacao.course,
             entity: formacao.local,
-            period: formacao.period
-          }
-        }))
+            period: formacao.period,
+          },
+        })),
       });
     }
-  
+
     if (data.Idiomas && data.Idiomas.length > 0) {
       this.accordions.push({
         title: 'Idiomas', // Título da seção
-        name: 'Idiomas',  // Nome da seção para uso no acordeão
+        name: 'Idiomas', // Nome da seção para uso no acordeão
         expanded: false, // Inicializa como não expandida
         cardItems: data.Idiomas.map((idioma: any) => ({
-          data: {  // Mantenha os dados que você precisa
+          data: {
+            // Mantenha os dados que você precisa
             language: idioma.language,
             status: idioma.status,
-            period: idioma.period
-          }
-        }))
+            period: idioma.period,
+          },
+        })),
       });
     }
-  
+
     if (data.HistoricoProfissional && data.HistoricoProfissional.length > 0) {
       this.accordions.push({
         title: 'Histórico Profissional', // Título da seção
-        name: 'Histórico Profissional',   // Nome da seção para uso no acordeão
+        name: 'Histórico Profissional', // Nome da seção para uso no acordeão
         expanded: false, // Inicializa como não expandida
         cardItems: data.HistoricoProfissional.map((experiencia: any) => ({
-          data: {  // Mantenha os dados que você precisa
+          data: {
+            // Mantenha os dados que você precisa
             job: experiencia.job,
             company: experiencia.company,
-            period: experiencia.period
-          }
-        }))
+            period: experiencia.period,
+          },
+        })),
       });
     }
-  }  
+  }
+
+  seeMore() {
+    this.sections = this.sections.concat(this.originalSections);
+
+    console.log(this.sections);
+  }
 }
-
-
