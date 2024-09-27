@@ -49,7 +49,7 @@ export class HomePage {
           },
         });
         await modal.present();
-      }, 500);
+      }, 5000);
     });
   }
 
@@ -72,7 +72,7 @@ export class HomePage {
       this.loadData();
       this.loadingUserData = false;
       loadingElement.dismiss();
-    }, 500);
+    }, 5000);
   }
 
   loadData() {
