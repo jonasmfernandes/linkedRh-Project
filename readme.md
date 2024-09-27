@@ -48,23 +48,23 @@ Este projeto é um aplicativo desenvolvido em **Ionic** e **TypeScript** que sim
 - **Ionic CLI** instalado globalmente:  
   ```bash
   npm install -g @ionic/cli
-´´´
+
 1. Clone este repositório.
    ```bash
    git clone https://github.com/jonasmfernandes/linkedRh-Project.git
-´´´
+
 2. Acesse a pasta do projeto. 
   ```bash
    cd linkedRh-Project
-´´´
+
 3. Instale as dependências:
   ```bash
    npm install
-´´´
+
 4. Execute o aplicativo em um servidor local:
   ```bash
    ionic serve
-´´´
+
 5. Acesse o aplicativo em:
 - http://localhost:8100
 
