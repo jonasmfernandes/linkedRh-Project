@@ -33,7 +33,9 @@ Este projeto é um aplicativo desenvolvido em **Ionic** e **TypeScript** que sim
    - O número de blocos e cards é flexível, permitindo fácil adaptação para diferentes cenários de visualização.
 
 ## Tecnologias Utilizadas
-- **Ionic Framework**
+- **HTML5**
+- **SCSS**
+- **Ionic Framework - Angular**
 - **TypeScript**
 - **Storage Local (Ionic Storage)**
 - **HTTP Client (para requisições à API)**
@@ -46,3 +48,26 @@ Este projeto é um aplicativo desenvolvido em **Ionic** e **TypeScript** que sim
 - **Ionic CLI** instalado globalmente:  
   ```bash
   npm install -g @ionic/cli
+´´´
+1. Clone este repositório.
+   ```bash
+   git clone https://github.com/jonasmfernandes/linkedRh-Project.git
+´´´
+2. Acesse a pasta do projeto. 
+  ```bash
+   cd linkedRh-Project
+´´´
+3. Instale as dependências:
+  ```bash
+   npm install
+´´´
+4. Execute o aplicativo em um servidor local:
+  ```bash
+   ionic serve
+´´´
+5. Acesse o aplicativo em:
+- http://localhost:8100
+
+## Autor 
+
+Desenvolvido por: Jonas Monteiro Fernandes
