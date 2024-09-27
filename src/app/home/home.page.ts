@@ -29,7 +29,7 @@ export class HomePage {
     this.presentLoading();
   }
 
-  async ngOnInit(){
+  async ngOnInit() {
     await this.storage.create();
   }
 
@@ -38,18 +38,18 @@ export class HomePage {
 
     this.randomUserApiService.getRandomUser().subscribe(async (randomUser) => {
       console.log(randomUser);
-      await this.storage.set(`${Date.now()}`, randomUser)
+      await this.storage.set(`${Date.now()}`, randomUser);
 
       setTimeout(async () => {
         this.loadingApp = false;
         const modal = await this.modalController.create({
           component: ModalContentComponent,
           componentProps: {
-            message: 'Carregado!',
+            message: 'Carregado os dados da API!',
           },
         });
         await modal.present();
-      }, 5000);
+      }, 500);
     });
   }
 
@@ -63,6 +63,7 @@ export class HomePage {
   async presentLoading() {
     const loadingElement = await this.loadingController.create({
       message: 'Carregando os dados...',
+      // spinner: 'circles'
     });
 
     await loadingElement.present();
@@ -71,7 +72,7 @@ export class HomePage {
       this.loadData();
       this.loadingUserData = false;
       loadingElement.dismiss();
-    }, 5000);
+    }, 500);
   }
 
   loadData() {

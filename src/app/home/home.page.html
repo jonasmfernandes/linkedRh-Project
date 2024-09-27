@@ -8,7 +8,10 @@
       </ion-header>
 
       <ion-content class="ion-padding">
-        <div class="menuContent">opa</div>
+        <div class="menuContent">
+          <ion-button (click)="goToProfile()">Perfil do Colaborador</ion-button>
+          <ion-button (click)="loadApp()">Atualizar App</ion-button>
+        </div>
       </ion-content>
     </ion-menu>
 
@@ -42,10 +45,11 @@
       <ion-button (click)="loadApp()">Atualizar App</ion-button>
 
       <ion-loading
+        class="ionLoading"
         [isOpen]="loadingApp"
-        message="Carregando..."
+        message="Carregando dados da API..."
         spinner="crescent"
-  ></ion-loading>
+      ></ion-loading>
     </div>
   </ng-container>
 </ion-content>
