@@ -49,11 +49,11 @@ Este projeto é um aplicativo desenvolvido em **Ionic** e **TypeScript** que sim
 ```bash
   npm install -g @ionic/cli
 ```
-1. Clone este repositório.
+1. Clone este repositório:
   ```bash
    git clone https://github.com/jonasmfernandes/linkedRh-Project.git
   ```
-2. Acesse a pasta do projeto. 
+2. Acesse a pasta do projeto:
   ```bash
    cd linkedRh-Project
   ```
