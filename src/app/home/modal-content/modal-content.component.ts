@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal-content.component.scss'],
 })
 export class ModalContentComponent {
-  @Input() message: string = ''; 
+  @Input() message: string = '';
 
   constructor(private modalController: ModalController) {}
 

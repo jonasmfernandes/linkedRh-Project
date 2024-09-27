@@ -68,6 +68,5 @@ Este projeto é um aplicativo desenvolvido em **Ionic** e **TypeScript** que sim
 5. Acesse o aplicativo em:
 - http://localhost:8100
 
-### Autor 
-
+## Autor 
 Desenvolvido por: Jonas Monteiro Fernandes
